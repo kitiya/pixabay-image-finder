@@ -9,7 +9,7 @@ import "./App.css";
 // Colors001 - https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#50514F" },
+    primary: { main: "#373736" },
     secondary: { main: "#F45B69" }
   }
 });

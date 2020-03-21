@@ -25,19 +25,22 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
+  },
+
+  imageDialog: {
+    width: "600px",
+    height: "auto"
   }
 }));
 
 const ImageDialog = ({ open, image, handleClose }) => {
-  console.log(open, image);
+  const classes = useStyles();
   return image ? (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Dialog Title</DialogTitle>
-      <img
-        alt=""
-        src={image.largeImageURL}
-        style={{ width: "600px", height: "auto" }}
-      />
+      <DialogTitle>
+        {image.tags.charAt(0).toUpperCase() + image.tags.slice(1)}
+      </DialogTitle>
+      <img alt="" src={image.largeImageURL} className={classes.imageDialog} />
     </Dialog>
   ) : null;
 };
@@ -58,10 +61,15 @@ const ImageResults = ({ images, keyword }) => {
 
   let content = images ? (
     <div className={classes.root}>
-      <GridList cellHeight={250} className={classes.gridList} cols="3">
+      <GridList cellHeight={250} className={classes.gridList} cols={3}>
         {images.map(image => (
           <GridListTile key={image.id}>
-            <img src={image.webformatURL} alt={image.tags} />
+            <img
+              src={image.largeImageURL}
+              alt={image.tags}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleOpenDialog(image)}
+            />
             <GridListTileBar
               title={image.tags}
               subtitle={<span>by: {image.user}</span>}
