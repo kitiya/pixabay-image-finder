@@ -9,17 +9,20 @@ import {
   MenuItem,
   Select,
   TextField,
-  Button
+  Button,
+  Grid
 } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-  select: { minWidth: 120 }
+  root: { padding: 20 },
+  select: { minWidth: 120, width: "95%" },
+  searchField: { width: "100%" }
 }));
 
 const Search = () => {
   const [inputText, setInputText] = useState("");
-  const [searchText, setSearchText] = useState("");
-  const [amount, setAmount] = useState(3);
+  const [searchText, setSearchText] = useState("sky");
+  const [amount, setAmount] = useState(12);
   const [images, setImages] = useState([]);
   const apiUrl = "https://pixabay.com/api";
   const apiKey = process.env.REACT_APP_PIXABAY_KEY;
@@ -52,40 +55,55 @@ const Search = () => {
 
   console.log(images);
   return (
-    <>
-      <InputLabel id="amount-select-label">Amount</InputLabel>
-      <Select
-        className={classes.select}
-        labelId="amount-select-label"
-        id="amount-select"
-        value={amount}
-        onChange={handleAmountChange}
-        styles={{ width: "25%" }}
-      >
-        <MenuItem value={0}>0</MenuItem>
-        <MenuItem value={3}>3</MenuItem>
-        <MenuItem value={5}>5</MenuItem>
-      </Select>
-      <TextField
-        name="inputText"
-        value={inputText}
-        onChange={handleInputChange}
-        label="Search for images"
-        styles={{ width: "500px" }}
-      />
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={handleSearch}
-        styles={{ width: "10%" }}
-      >
-        Search
-      </Button>
+    <Grid container className={classes.root}>
+      <Grid item xs={12} md={6}>
+        <InputLabel id="amount-select-label">Amount</InputLabel>
+        <Select
+          className={classes.select}
+          labelId="amount-select-label"
+          id="amount-select"
+          value={amount}
+          onChange={handleAmountChange}
+          styles={{ width: "25%" }}
+        >
+          <MenuItem value={0}>0</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <Grid container>
+          <Grid item xs={10}>
+            <TextField
+              className={classes.searchField}
+              name="inputText"
+              value={inputText}
+              onChange={handleInputChange}
+              label="Search for images"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleSearch}
+              styles={{
+                width: "100%",
+                background: "red",
+                padding: 30,
+                margin: 50
+              }}
+            >
+              Search
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
 
       {images.length ? (
         <ImageResults images={images} keyword={searchText} />
       ) : null}
-    </>
+    </Grid>
   );
 };
 
