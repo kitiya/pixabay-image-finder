@@ -37,7 +37,6 @@ const ImageDialog = ({ open, image, handleClose }) => {
         src={image.largeImageURL}
         style={{ width: "600px", height: "auto" }}
       />
-      <p>WTF</p>
     </Dialog>
   ) : null;
 };
