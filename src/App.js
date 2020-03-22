@@ -2,7 +2,6 @@ import React from "react";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import NavBar from "./components/navbar/nav-bar";
 import Search from "./components/search/search";
-import Footer from "./components/layouts/Footer";
 import "./App.css";
 
 // Colors002 - https://coolors.co/114b5f-028090-e4fde1-456990-f45b69
@@ -19,7 +18,6 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <NavBar />
       <Search />
-      <Footer />
     </MuiThemeProvider>
   );
 }
