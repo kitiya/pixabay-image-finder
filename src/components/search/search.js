@@ -13,12 +13,12 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: { padding: "10px 20px" },
-  select: { minWidth: 120, width: "95%" },
-  searchField: { width: "95%", marginTop: 10 },
-  inputLabel: { marginTop: 10 }
+  select: { minWidth: 120, width: "100%" },
+  searchField: { width: "100%" },
+  gridItem: { padding: 5 }
 }));
 
-const amountList = [3, 9, 12];
+const amountList = [3, 9, 12, 15, 30];
 const categoryList = [
   "backgrounds",
   "fashion",
@@ -60,7 +60,7 @@ const colorList = [
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
-  const [amount, setAmount] = useState(9);
+  const [amount, setAmount] = useState(12);
   const [category, setCategory] = useState("All");
   const [color, setColor] = useState("All");
   const [images, setImages] = useState([]);
@@ -101,10 +101,8 @@ const Search = () => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12} md={2}>
-        <InputLabel id="amount-select-label" className={classes.inputLabel}>
-          Amount
-        </InputLabel>
+      <Grid item xs={12} md={2} className={classes.gridItem}>
+        <InputLabel id="amount-select-label">Amount</InputLabel>
         <Select
           className={classes.select}
           labelId="amount-select-label"
@@ -119,10 +117,8 @@ const Search = () => {
           ))}
         </Select>
       </Grid>
-      <Grid item xs={12} md={2}>
-        <InputLabel id="category-select-label" className={classes.inputLabel}>
-          Category
-        </InputLabel>
+      <Grid item xs={12} md={2} className={classes.gridItem}>
+        <InputLabel id="category-select-label">Category</InputLabel>
         <Select
           className={classes.select}
           labelId="category-select-label"
@@ -138,10 +134,8 @@ const Search = () => {
           ))}
         </Select>
       </Grid>
-      <Grid item xs={12} md={2}>
-        <InputLabel id="color-select-label" className={classes.inputLabel}>
-          Color
-        </InputLabel>
+      <Grid item xs={12} md={2} className={classes.gridItem}>
+        <InputLabel id="color-select-label">Color</InputLabel>
         <Select
           className={classes.select}
           labelId="color-select-label"
@@ -157,7 +151,7 @@ const Search = () => {
           ))}
         </Select>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} className={classes.gridItem}>
         <TextField
           className={classes.searchField}
           name="searchText"
